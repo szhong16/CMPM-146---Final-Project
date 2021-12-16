@@ -1,0 +1,685 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <meta name="google-site-verification" content="CKknic129CZMSr1F4NQGTzI0onepYjpN6DSYNWI0zss" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+    <title>world.explore() - Gallery</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit&display=swap');
+        body {font-family: 'Outfit', sans-serif;}
+        button {font-family: 'Outfit', sans-serif;}
+        h1 {text-shadow: 4px 4px 4px rgb(70, 70, 70);}
+        p {text-shadow: 2px 2px 2px rgb(70, 70, 70);}
+        a {color: white;}
+        a:hover {color: rgb(70, 70, 70);}
+        
+        .imgbox{
+            width: auto;
+            height: 300px;        
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: auto;
+            margin-bottom: auto;
+            overflow: hidden;
+            border-radius: 25px;
+        }
+
+        #welogo {
+            height: 200px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            filter: drop-shadow(0 0 0.75rem rgb(116, 75, 37));
+        }
+        
+        .grid { 
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-gap: 20px;
+            align-items: stretch;
+        }
+        .grid > article {
+            border: 0px solid #ccc;
+            box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);
+            background-color: rgba(0, 0, 0, 0.527);
+            border-radius: 25px;
+            overflow: hidden;
+        }
+        .grid > article img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .text {
+            padding: 0 20px 20px;
+            color: white;
+            height: 100%;
+        }
+        .text > button {
+            background: rgba(0, 0, 0, 0.575);
+            border: 0;
+            color: white;
+            padding: 10px;
+            width: 100%;
+            border-radius: 25px;
+        }
+
+        #map{
+            height: 400px;
+            width: 100%;
+        }
+
+        .puzzlebtn {
+            cursor: pointer;
+            transition: 0.3s;
+            border-radius: 25px;
+            padding: 15px 35px;
+            margin: 5px;
+            border: 0px;
+            background-color:rgba(93, 214, 198, 0.8)
+        }
+
+        .puzzlebtn:hover {
+            filter: brightness(70%);
+            box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);
+        }
+
+        /* Style the Image Used to Trigger the Modal */
+        /* From: https://www.w3schools.com/howto/howto_css_modal_images.asp */
+        #myImg {
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        #myImg:hover {
+            opacity: 0.7;
+            filter: brightness(50%);
+        }
+
+        .modal {
+            display: none;                            /* Hidden by default */
+            position: fixed;                          /* Stay in place */
+            z-index: 1;                               /* Sit on top */
+            padding-top: 100px;                       /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%;                              /* Full width */
+            height: 100%;                             /* Full height */
+            overflow: auto;                           /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0);         /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.9);   /* Black w/ opacity */
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+            height: 500px;
+            overflow: visible;
+            object-fit: scale-down;
+        }
+
+        #caption {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+            text-align: center;
+            color: #ccc;
+            padding: 10px 0;
+            height: 150px;
+        }
+
+        .modal-content, #caption {
+            animation-name: zoom;
+            animation-duration: 0.6s;
+        }
+
+        @keyframes zoom {
+            from { transform: scale(0) }
+            to { transform: scale(1) }
+        }
+
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        @media only screen and (max-width: 700px) {
+            .modal-content {
+                width: 100%;
+            }
+        }
+
+        @keyframes move-background {
+        from {
+                -webkit-transform: translate3d(0px, 0px, 0px);
+            }
+            to { 
+                -webkit-transform: translate3d(1000px, 0px, 0px);
+            }
+        }
+        @-webkit-keyframes move-background {
+        from {
+                -webkit-transform: translate3d(0px, 0px, 0px);
+            }
+            to { 
+                -webkit-transform: translate3d(1000px, 0px, 0px);
+            }
+        }
+
+        @-moz-keyframes move-background {    
+            from {
+                -webkit-transform: translate3d(0px, 0px, 0px);
+            }
+            to { 
+                -webkit-transform: translate3d(1000px, 0px, 0px);
+            }
+        }
+
+            @-webkit-keyframes move-background {
+            from {
+                -webkit-transform: translate3d(0px, 0px, 0px);
+            }
+            to { 
+                -webkit-transform: translate3d(1000px, 0px, 0px);
+            }
+        }
+
+        .background-container{
+            position: fixed;
+            top: 0;
+            left:0;
+            bottom: 0;
+            right: 0;
+        }
+
+        .stars {
+        background: transparent url("Galaxy-PNG-File.PNG") repeat;
+        position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: block;
+            z-index: 0;
+        }
+
+        .twinkling{
+            width:10000px;
+            height: 100%;
+            background: transparent url("particle1.PNG") repeat;
+            background-size: 1920px 1080px;
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            z-index: 2;
+            opacity: 0.5;
+            
+            -moz-animation:move-background 70s linear infinite;
+        -ms-animation:move-background 70s linear infinite;
+        -o-animation:move-background 70s linear infinite;
+        -webkit-animation:move-background 70s linear infinite;
+        animation:move-background 70s linear infinite;
+            
+        }
+
+        .cloud{
+            width:10000px;
+            height: 100%;
+            background: transparent url("particle2.PNG") repeat;
+            background-size: 1920px 1080px;
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            z-index: 0;
+            opacity: 0.8;
+
+        -moz-animation:move-background 150s linear infinite;
+        -ms-animation:move-background 150s linear infinite;
+        -o-animation:move-background 150s linear infinite;
+        -webkit-animation:move-background 150s linear infinite;
+        animation:move-background 150s linear infinite;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- background particles -->
+    <div class="background-container">
+        <div class="twinkling"></div>
+        <div class="cloud"></div>
+    </div>
+
+    <section>
+        <nav class="navbar" role="navigation" aria-label="main navigation" style="background-color: rgba(76, 75, 71, 0.397)">
+            <div class="nav-brand">
+                
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+
+            <div id="navbarBasicExample" class="navbar-menu">
+                <a class="navbar-item" href="">
+                    <img src="logo.jpg">
+                </a>
+                
+                <a class="navbar-item" href="./index.html" style="color: white;">
+                    Home
+                </a>
+
+                <a class="navbar-item" href="./library.html" style="color: white;">
+                    Gallery
+                </a>
+                
+                <a class="navbar-item" href="./about.html" style="color: white;">
+                    About
+                </a>
+
+            </div>
+        </nav>
+    </section>
+
+    <section class="is-secton is-vertical">
+        <div class="container is-fluid">
+            <div class="content">
+                <img id="welogo" src="worldexplorelogo.png">
+                <h6 class="has-text-right" style="color: white">by Sam Feng, Xufan Huang, Yanwen Xu, Sijia Zhong</h6>
+            </div>
+        </div>
+    </section>
+
+    <section class="is-section">
+        <div class="columns">
+            <div class="column is-center">
+                <div class="container is-fluid">
+                    <div class="tile is-ancestor">
+                        <div class="tile">
+                            <div class="tile is-parent is-vertical">
+                                <div class="box" style="background-color: rgba(76, 75, 71, 0.397)">
+                                    <p class="title has-text-centered" style="color: white;">Your Map</p>
+                                    <!-- <div id="map"></div> -->
+                                    <div class="image is-256x256">
+                                        <img src="Example/myMap.png">
+                                    </div>         
+                                </div>
+                                <div class="box" style="background-color: rgba(76, 75, 71, 0.397)">
+                                    <p class="title has-text-centered" style="color: white;">Unlocked Gallery</p>
+                                    <p class="title is-6 has-text-right" style="color: white">Current unlocked location: 3</p>
+                                    <main class="grid">
+                                        <article>
+                                          <img class="myImages" id="myImg" src="Example/1.jpg" alt="UC Santa Cruz Arboretum">
+                                          <!-- The Modal -->
+                                          <div id="myModal" class="modal">
+                                            <span class="close">&times;</span>
+                                            <img class="modal-content" id="img01" style="width: 100%;max-width: 1000px;height: auto;">
+                                            <div id="caption"></div>
+                                          </div>
+                                          <div class="text">
+                                            <h3>UC Santa Cruz Arboretum</h3>
+                                            <p>Address: Arboretum Rd, Santa Cruz, CA 95064, United States</p>
+                                            <p>Lat: 36.984, Lng: -122.0613</p>
+                                            <!--<button type="button" id="show1">
+                                                <a class="image-link" href="Example/1.jpg">Show</a>
+                                            </button>-->
+                                            <button class="puzzlebtn" type="button" id="arboretumButton" 
+                                                style="cursor: pointer; border-radius: 25px; padding: 15px 35px; margin: 5px; border: 0px; background-color:rgba(93, 214, 198, 0.8)">
+                                                Puzzle
+                                            </button>
+                                          </div>
+                                        </article>
+                                        <article>
+                                          <img class="myImages" id="myImg" src="Example/2.jpg" alt="UC Santa Cruz Entrance">
+                                          <!-- The Modal -->
+                                          <div id="myModal" class="modal">
+                                            <span class="close">&times;</span>
+                                            <img class="modal-content" id="img01">
+                                            <div id="caption"></div>
+                                          </div>
+                                          <div class="text">
+                                            <h3>UC Santa Cruz Entrance</h3>
+                                            <p>Address: 1156 High St, Santa Cruz, CA 95064, United States</p>
+                                            <p>Lat: 36.9915, Lng: -122.0607</p>
+                                            <!--<button type="button" id="show2">
+                                                <a class="image-link" href="Example/2.jpg">Show</a>
+                                            </button>-->
+                                            <button class="puzzlebtn" type="button" id="entranceButton" 
+                                            style="cursor: pointer; border-radius: 25px; padding: 15px 35px; margin: 5px; border: 0px; background-color:rgba(93, 214, 198, 0.8)">
+                                                Puzzle
+                                            </button>
+                                          </div>
+                                        </article>
+                                        <article>
+                                            <img class="myImages" id="myImg" src="Example/5.jpg" alt="Surfer Dude Statue">
+                                            <!-- The Modal -->
+                                            <div id="myModal" class="modal">
+                                                <span class="close">&times;</span>
+                                                <img class="modal-content" id="img01">
+                                                <div id="caption"></div>
+                                            </div>
+                                            <div class="text">
+                                              <h3>Surfer Dude Statue</h3>
+                                              <p>Address: W. Cliff Dr., Santa Cruz, CA 95064, United States</p>
+                                              <p>Lat: 36.9533, Lng: -122.040534</p>
+                                              <!--<button type="button" id="show5">
+                                                  <a class="image-link" href="Example/5.jpg">Show</a>
+                                              </button>-->
+                                              <button class="puzzlebtn" type="button" id="statueButton" 
+                                                style="cursor: pointer; border-radius: 25px; padding: 15px 35px; margin: 5px; border: 0px; background-color:rgba(93, 214, 198, 0.8)">
+                                                Puzzle
+                                              </button>
+                                            </div>
+                                        </article>
+                                        
+                                    </main>
+                                    <div class="box has-text-centered" style="background-color: rgba(76, 75, 71, 0)">
+                                        <p style="color: white;">
+                                            Congrats! You already unlocked 3 locations. <br>
+                                            Now the puzzle is unlocked. 
+                                        </p>
+                                        <button class="button" id="bonusButton" 
+                                            style="border-radius: 25px; padding: 15px 35px; margin: 5px; border: 0px; background-color:rgb(93, 214, 198, 0.8)">
+                                            Puzzle
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="box" style="background-color: rgba(76, 75, 71, 0.397)">
+                                    <p class="title has-text-centered" style="color: white;">Locked Gallery</p>
+                                    <main class="grid">
+                                          <article>
+                                            <img src="Example/noimg.jpeg" alt="Sample photo">
+                                            <!-- The Modal -->
+                                            <div id="myModal" class="modal">
+                                                <span class="close">&times;</span>
+                                                <img class="modal-content" id="img01">
+                                                <div id="caption"></div>
+                                            </div>
+                                            <div class="text">
+                                              <h3>Santa Cruz Lighthouse</h3>
+                                              <p>Address: E Cliff Dr, Santa Cruz, CA 95062, United States</p>
+                                              <!-- <p>Lat: 36.9632, Lng: -121.99</p>
+                                              <button type="button" id="show3">
+                                                  <a class="image-link" href="Example/3.jpg">Show</a>
+                                              </button> -->
+                                            </div>
+                                          </article>
+                                          <article>
+                                            <img src="Example/noimg.jpeg" alt="Sample photo">
+                                            <!-- The Modal -->
+                                            <div id="myModal" class="modal">
+                                                <span class="close">&times;</span>
+                                                <img class="modal-content" id="img01">
+                                                <div id="caption"></div>
+                                            </div>
+                                            <div class="text">
+                                              <h3>Santa Cruz Bell Tower</h3>
+                                              <p>Address: North Pacific Avenue & Water Street, Santa Cruz, CA 95060, United States</p>
+                                              <!-- <p>Lat: 36.977156, Lng: -122.026925</p> -->
+                                              <!-- <button type="button" id="show6">
+                                                  <a class="image-link" href="Example/6.jpg">Show</a>
+                                              </button> -->
+                                            </div>
+                                          </article>
+                                    </main>
+                                </div>
+                                <div class="box" style="background-color: rgba(76, 75, 71, 0.397)">
+                                    <p class="title has-text-centered" style="color: white;">Secret Gallery</p>
+                                    <main class="grid">
+                                        <article>
+                                            <img src="Example/secret.jpeg" alt="Sample photo">
+                                            <!-- The Modal -->
+                                            <div id="myModal" class="modal">
+                                                <span class="close">&times;</span>
+                                                <img class="modal-content" id="img01">
+                                                <div id="caption"></div>
+                                            </div>
+                                            <div class="text">
+                                              <!-- <h3>Santa Cruz Bell Tower</h3> -->
+                                              <p>Address: 504 Front St A, Santa Cruz, CA 95060</p>
+                                              <!-- <p>Lat: 36.977156, Lng: -122.026925</p> -->
+                                              <!-- <button type="button" id="show6">
+                                                  <a class="image-link" href="Example/6.jpg">Show</a>
+                                              </button> -->
+                                            </div>
+                                          </article>
+                                    </main>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <script>
+        function init() {
+            // https://wiki.openstreetmap.org/wiki/OpenLayers_Simple_Example
+
+            const success = (position) => {
+                const latitude = position.coords.latitude;
+                const longitude = position.coords.longitude;
+                const altitude = position.coords.altitude;
+                const accuracy = position.coords.accuracy;
+                console.log(`lat: ${latitude} long: ${longitude}`);
+            }
+
+            const error = (error) => {
+                console.log(`Unable to retrieve your location due to ${error.code}: ${error.message}`);
+            }
+
+            const geoOptions = {
+                enableHighAccuracy: true,
+                maximumAge: 30000,
+                timeout: 27000
+            };
+
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(success, error, geoOptions);
+            } else {
+                console.log("Geolocation services are not supported by your web browser.");
+            }
+        }
+
+        // https://developers.google.com/maps/documentation/javascript/examples/map-geolocation#maps_map_geolocation-javascript
+        // [START maps_map_geolocation]
+        // Note: This example requires that you consent to location sharing when
+        // prompted by your browser. If you see the error "The Geolocation service
+        // failed.", it means you probably did not give permission for the browser to
+        // locate you.
+        let map, infoWindow;
+
+        function initMap() {
+            map = new google.maps.Map(document.getElementById("map"), {
+                center: { lat: 36.974117, lng: -122.030792 },
+                zoom: 13,
+            });
+
+            // add marker for UC Santa Cruz Arboretum
+            var markerForArboretum = new google.maps.Marker({
+                prosition: {lat:36.984, lng:-122.0613},
+                map:map
+            });
+
+            // add marker for UC Santa Cruz Entrance
+            var marker = new google.maps.Marker({
+                prosition: {lat:36.9915, lng:-122.0607},
+                map:map
+            });
+
+            // add marker for Surfer Dude Statue
+            var marker = new google.maps.Marker({
+                prosition: {lat:36.9533, lng:-122.040534},
+                map:map
+            });
+
+            infoWindow = new google.maps.InfoWindow();
+
+            const locationButton = document.createElement("button");
+
+            locationButton.textContent = "Pan to Current Location";
+            locationButton.classList.add("custom-map-control-button");
+            map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
+            locationButton.addEventListener("click", () => {
+                // Try HTML5 geolocation.
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(
+                        (position) => {
+                            const pos = {
+                                lat: position.coords.latitude,
+                                lng: position.coords.longitude,
+                            };
+
+                            infoWindow.setPosition(pos);
+                            infoWindow.setContent("Location found.");
+                            infoWindow.open(map);
+                            map.setCenter(pos);
+                        },
+                        () => {
+                            handleLocationError(true, infoWindow, map.getCenter());
+                        }
+                    );
+                } else {
+                    // Browser doesn't support Geolocation
+                    handleLocationError(false, infoWindow, map.getCenter());
+                }
+            });
+        }
+
+        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+            infoWindow.setPosition(pos);
+            infoWindow.setContent(
+                browserHasGeolocation
+                    ? "Error: The Geolocation service failed."
+                    : "Error: Your browser doesn't support geolocation."
+            );
+            infoWindow.open(map);
+        }
+        // [END maps_map_geolocation]
+        
+        // function initMap(){
+        //     // map options
+        //     var options = {
+        //         zoom:13,
+        //         center: {lat:36.974117, lng:-122.030792}
+        //     }
+
+        //     // new map
+        //     var map = new google.maps.Map(document.getElementById('map'), options);
+
+        //     // add marker for UC Santa Cruz Arboretum
+        //     var markerForArboretum = new google.maps.Marker({
+        //         prosition: {lat:36.984, lng:-122.0613},
+        //         map:map
+        //     });
+
+        //     // add marker for UC Santa Cruz Entrance
+        //     var marker = new google.maps.Marker({
+        //         prosition: {lat:36.9915, lng:-122.0607},
+        //         map:map
+        //     });
+
+        //     // add marker for Surfer Dude Statue
+        //     var marker = new google.maps.Marker({
+        //         prosition: {lat:36.9533, lng:-122.040534},
+        //         map:map
+        //     });
+        // }
+    </script>
+
+    <script async
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyByBKVr9WjP8aABOGzJxc-Itm4djqjZP94&callback=initMap">
+    </script>
+
+    <!-- For puzzle button -->
+    <script type="text/javascript">
+        // Bonus puzzle
+        document.getElementById("bonusButton").onclick = function () {
+            location.href = "Puzzle/puzzle.html";
+        };
+        // Arboretum puzzle
+        document.getElementById("arboretumButton").onclick = function () {
+            location.href = "Puzzle/arboretumPuzzle.html";
+        };
+        // Entrance puzzle
+        document.getElementById("entranceButton").onclick = function () {
+            location.href = "Puzzle/entrancePuzzle.html";
+        };
+        // Entrance puzzle
+        document.getElementById("statueButton").onclick = function () {
+            location.href = "Puzzle/statuePuzzle.html";
+        };
+    </script>
+
+    <script>
+        // create references to the modal...
+        var modal = document.getElementById('myModal');
+        // to all images -- note I'm using a class!
+        var images = document.getElementsByClassName('myImages');
+        // the image in the modal
+        var modalImg = document.getElementById("img01");
+        // and the caption in the modal
+        var captionText = document.getElementById("caption");
+
+        // Go through all of the images with our custom class
+        for (var i = 0; i < images.length; i++) {
+            var img = images[i];
+            // and attach our click listener for this image.
+            img.onclick = function(evt) {
+                modal.style.display = "block";
+                modalImg.src = this.src;
+                captionText.innerHTML = this.alt;
+            }
+        }
+
+        var span = document.getElementsByClassName("close")[0];
+
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+    </script>
+
+</body>
+
+<script src="script.js"></script>
+
+</html>
+
+<style>
+    button {
+        color: rgb(255, 255, 255);
+        padding: 15px 35px;
+        margin: 5px;
+        border: 0px solid rgb(255, 255, 255);
+        border-radius: 25px
+    }
+    
+    body {
+        background-image: url('Example/boardwalk.JPG');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        /* background-size: auto auto; */
+        background-size: 100% 100%;
+    }
+</style>

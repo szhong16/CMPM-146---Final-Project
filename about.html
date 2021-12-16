@@ -1,0 +1,231 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <meta name="google-site-verification" content="CKknic129CZMSr1F4NQGTzI0onepYjpN6DSYNWI0zss" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+    <title>world.explore() - About</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit&display=swap');
+        body {
+            font-family: 'Outfit', sans-serif;
+            color: white;
+        }
+        section {
+            margin: auto;
+        }
+        button {font-family: 'Outfit', sans-serif;}
+        h1 {text-shadow: 4px 4px 4px rgb(70, 70, 70);}
+        p {text-shadow: 2px 2px 2px rgb(70, 70, 70);}
+        h6 {text-shadow: 2px 2px 2px rgb(70, 70, 70);}
+        a:hover {color: rgb(70, 70, 70);}
+        
+        .imgbox{
+            width: auto;
+            height: 300px;        
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: auto;
+            margin-bottom: auto;
+            overflow: hidden;
+            border-radius: 25px;
+        }    
+
+        #welogo {
+            height: 200px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            filter: drop-shadow(0 0 0.75rem rgb(116, 75, 37));
+        }
+
+        @keyframes move-background {
+        from {
+                -webkit-transform: translate3d(0px, 0px, 0px);
+            }
+            to { 
+                -webkit-transform: translate3d(1000px, 0px, 0px);
+            }
+        }
+        @-webkit-keyframes move-background {
+        from {
+                -webkit-transform: translate3d(0px, 0px, 0px);
+            }
+            to { 
+                -webkit-transform: translate3d(1000px, 0px, 0px);
+            }
+        }
+
+        @-moz-keyframes move-background {    
+            from {
+                -webkit-transform: translate3d(0px, 0px, 0px);
+            }
+            to { 
+                -webkit-transform: translate3d(1000px, 0px, 0px);
+            }
+        }
+
+            @-webkit-keyframes move-background {
+            from {
+                -webkit-transform: translate3d(0px, 0px, 0px);
+            }
+            to { 
+                -webkit-transform: translate3d(1000px, 0px, 0px);
+            }
+        }
+
+        .background-container{
+            position: fixed;
+            top: 0;
+            left:0;
+            bottom: 0;
+            right: 0;
+        }
+
+        .stars {
+        background: transparent url("Galaxy-PNG-File.PNG") repeat;
+        position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: block;
+            z-index: 0;
+        }
+
+        .twinkling{
+            width:10000px;
+            height: 100%;
+            background: transparent url("particle1.PNG") repeat;
+            background-size: 1920px 1080px;
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            z-index: 2;
+            opacity: 0.5;
+            
+            -moz-animation:move-background 70s linear infinite;
+        -ms-animation:move-background 70s linear infinite;
+        -o-animation:move-background 70s linear infinite;
+        -webkit-animation:move-background 70s linear infinite;
+        animation:move-background 70s linear infinite;
+            
+        }
+
+        .cloud{
+            width:10000px;
+            height: 100%;
+            background: transparent url("particle2.PNG") repeat;
+            background-size: 1920px 1080px;
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            z-index: 0;
+            opacity: 0.8;
+
+        -moz-animation:move-background 150s linear infinite;
+        -ms-animation:move-background 150s linear infinite;
+        -o-animation:move-background 150s linear infinite;
+        -webkit-animation:move-background 150s linear infinite;
+        animation:move-background 150s linear infinite;
+        }
+    </style>
+</head>
+
+<body >
+    <!-- background particles -->
+    <!-- <div class="background-container">
+        <div class="twinkling"></div>
+        <div class="cloud"></div>
+    </div> -->
+    
+    <section>
+        <nav class="navbar" role="navigation" aria-label="main navigation" style="background-color: rgba(76, 75, 71, 0.397)">
+            <div class="nav-brand">
+                
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+
+            <div id="navbarBasicExample" class="navbar-menu">
+                <a class="navbar-item" href="">
+                    <img src="logo.jpg">
+                </a>
+                
+                <a class="navbar-item" href="./index.html" style="color: white;">
+                    Home
+                </a>
+
+                <a class="navbar-item" href="./library.html" style="color: white;">
+                    Gallery
+                </a>
+                
+                <a class="navbar-item" href="./about.html" style="color: white;">
+                    About
+                </a>
+
+            </div>
+        </nav>
+    </section>
+
+    <section>
+        <img id="welogo" src="worldexplorelogo.png">
+        <hr></hr>
+        <h6 class="title is-6 has-text-centered" style="color: white;">A project for CMPM146<br>by Sam Feng, Xufan Huang, Yanwen Xu, Sijia Zhong</h6>
+        <div style="width: 500px; margin-left: auto; margin-right: auto; color: white;">
+            <h6 class="title is-6 has-text-centered" style="color: white;">We designed it with the goal of encouraging outdoor urban explorations and player interactions. <br>
+                "world.explore()" will achieve this by providing players with multiple prompt locations every day. Those locations will be publicly and commonly accessible. <br>
+                (Examples include but are not limited to the Boardwalk, Bell Tower, some restaurants, et cetera.) Players interact by taking a photograph of the prompted location. <br>
+                Then they can upload the said photograph to world.explore() for our image detection system to determine if the said photograph qualifies to the standards laid out in the prompt. 
+            </h6>
+        </div>
+        <!-- </div> -->
+    </section>
+    <hr></hr>
+    <section>
+        <h6 class="title is-6 has-text-centered" style="color: white;">This is still a prototype. <br>
+            Hope you like it.
+        </h6>
+        <center>
+            <figure class="image is-128x128">
+                <img src="logo.jpg">
+            </figure>
+        </center> 
+    </section>
+    <hr></hr>
+    <section class="title is-5 has-text-centered" style="color: rgb(255, 255, 255);">
+        <a href="https://github.com/yxu149/cmpm146/tree/main/WorldExploreProject">Github link :)</a> <br>
+        [Current private]
+    </section>
+    <hr></hr>
+    <section class="title is-5 has-text-centered" style="color: rgb(255, 255, 255);">
+        If you find any errors, please report them to:&nbsp;&nbsp;<br>
+        <a href="mailto:yxu149@ucsc.edu">yxu149@ucsc.edu</a>
+    </section>
+    <hr></hr>
+</body>
+</html>
+
+
+<style>
+    button {
+      color: rgb(255, 255, 255);
+      padding: 15px 35px;
+      margin: 5px;
+      border: 0px solid rgb(255, 255, 255);
+      border-radius: 25px
+    }
+    body {
+        background-image: url('Example/boardwalk.JPG');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: 100% 100%;
+    }
+</style>
